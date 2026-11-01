@@ -1,4 +1,4 @@
-# MAS4FLP - Multi-Behavior Facility Location Optimization
+# MAS4FLP - Multi-Agent System for Facility Location Problem
 
 This Python project selects solution of **k number of facilities from 283 candidate locations** for **440 demand regions**. Solutions are evaluated using **Binary**, **Proportional**, and optionally **Pareto-Huff** customer-behavior models. The project supports two objectives (2BM) or three objectives (3BM).
 
