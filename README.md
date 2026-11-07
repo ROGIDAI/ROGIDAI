@@ -20,6 +20,8 @@ ROGIDAI/
 
 ## 2. Datasets
 
+The experimental datasets were prepared using publicly available geographical and population data from the Vilnius region, Lithuania, comprising 283 candidate facility locations and 440 regional demand points. These data were processed for the facility-location experiments and combined with synthetically generated hub-quality values to create the test instances.
+
 `data/` contains `regionDemands.dat`, `regionDistancesToCity.dat`, and a `cityQualities.dat` file for each test case:
 
 - **TC1–TC6:** Original quality datasets.
