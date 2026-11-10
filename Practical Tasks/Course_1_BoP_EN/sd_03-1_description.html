@@ -1,0 +1,38 @@
+<html>
+	<meta charset="utf-8"/>
+	<body>
+		<ol>
+			<li><p>Create a function that finds the best locations for a specified number (<code>n</code>) of new facilities, assuming that each city may have only one new facility (but may have one new facility and one existing facility). The best solution is the one that gives the highest value of the objective function created in Laboratory Work #1. The function must work for any number <code>n</code> of facilities.</p></li>
+			<p>Find the best solution by testing all possible solutions and selecting the best one. You must check every possible combination, taking into account that a city may have only one new facility. If there are 3 new facilities and 50 cities, you must check 19600 different solutions:</p>
+<pre>
+0  1  2
+0  1  3
+.
+   .
+      .
+0  1  48
+0  1  49
+0  2  3
+0  2  4
+.
+   .  
+      .
+46 47 48
+46 47 49
+47 48 49
+</pre>
+
+			<li>Extend the program created in the second independent assignment according to the following requirements:</li>
+			<ul>
+				<li>Define all helper functions (except function templates) in a separate <code>*.cpp</code> file.</li>
+				<li>For the created <code>*.cpp</code> file, create a header file <i>*.h</i> and protect it against being included more than once in the same program.</li>
+				<li>Create a program build file (<i>makefile</i>) that generates your program's executable file. Include three rules in the build file:</li>
+				<ul>
+					<li>Build the executable: compile the main file and create the executable together with the compiled helper-functions object file <code>*.o</code>.</li>
+					<li>Compile the helper-functions file.</li>
+					<li>Clean: delete all <code>*.o</code> files and the program's executable file.</li>
+				</ul>         
+			</ul>
+		</ol>
+	</body>
+</html>

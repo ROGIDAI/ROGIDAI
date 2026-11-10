@@ -1,0 +1,31 @@
+<html>
+	<meta charset="utf-8"/>
+	<body>
+      <h2>Laboratory Work #2 Task</h2>
+      <p>Extend Laboratory Work #1 by completing the following tasks:</p>
+      <ol>
+         <li><p>Create a structure to store the data for one geographical point: longitude, latitude, and population.</li>
+         <li><p>Read the geographical data from a text file and create a dynamically allocated array of structures.</p></li>
+         <li><p>Modify the Haversine distance calculation function so that it takes two parameters: pointers to structures describing geographical points.</p></li>
+         <li><p>Create a function that calculates a matrix of distances between all geographical points and returns its address. Since the distance from point <code>A</code> to point <code>B</code> equals the distance from point <code>B</code> to point <code>A</code>, you can generate a "triangular" matrix. The first 10 rows of such a matrix would look like this:</p>
+<pre>
+0.0 
+94.0    0.0 
+290.2 198.2    0.0 
+33.7   74.8  264.0    0.0 
+131.9  96.9  202.5   98.1    0.0 
+87.6   56.4  237.3   89.5  149.4    0.0 
+18.5  100.5  298.5   50.7  148.5   82.9    0.0 
+88.9   75.3  228.1   55.2   43.1  118.7  105.8    0.0 
+79.7   31.8  212.0   52.1   72.4   77.4   91.4   44.1    0.0 
+92.6  126.8  282.6   69.9   82.7  157.3  110.8   57.8   95.4    0.0 
+</pre>
+         <p>Here, the element in row <code>i</code>, column <code>j</code> is the distance between points <code>i</code> and <code>j</code>. Allocate only as much memory as is needed to store all the elements of the distance matrix (no more than necessary).</p>
+         <p>The function must work for any number <code>N</code> of points (the file <code>data.data</code> contains more than 12000 points).</p></li>
+         <li><p>Create a function that prints the first <code>n</code> rows of the distance matrix, as shown above. Here, <code>n</code> is a function parameter.</p></li>
+         <li><p>Create a function that returns the distance between two points from the generated distance matrix. Pass the point indices and the distance matrix as function parameters.</p></li>
+      </ol>
+</html>
+
+
+

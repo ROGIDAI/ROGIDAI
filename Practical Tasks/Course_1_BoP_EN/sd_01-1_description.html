@@ -1,0 +1,44 @@
+<html>
+	<meta charset="utf-8"/>
+	<body>
+		<h2>Facility Location Problem</h2>
+      <p>Suppose several companies providing services to residents operate in a given geographical area and together have <i>N<sub>PF</sub></i> existing facilities (<i>Preexisting Facilities</i>). A new company wants to enter the market and plans to open <i>N<sub>X</sub></i> new facilities. The task is to choose the cities where the new facilities would attract the largest number of customers.</p>
+      <p>Customers choose facilities based on geographical distance: all residents of a city choose the nearest facility. The distance between two geographical points is calculated using the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine formula</a>, whose C++ implementation is available in the virtual learning environment.</p>
+
+      <p>To evaluate the utility of the new facilities, the following algorithm is applied to each city:</p>
+      <ol>
+         <li>find the nearest facility among the facilities already operating in the market;</li>
+         <li>find the nearest facility among the planned new facilities;</li>
+         <li>if the distance to the nearest new facility is less than the distance to the nearest existing facility, add the entire purchasing power of the city (all customers) to the new company's utility;</li>
+         <li>if the distance to the nearest new facility equals the distance to the nearest existing facility, the new company receives one-third of the city's purchasing power (for example, if a city has 1000 residents, the purchasing power of 333.333333 customers is added to the new company's utility).</li>         
+      </ol>
+
+      <p>The <i>N<sub>PF</sub></i> existing facilities are located in the largest cities, with one facility per city. New facilities may be built in any city, including cities where a competitor already has a facility. However, each city may have only one new facility.</p>
+
+      <h2>Laboratory Work #1 Task</h2>
+      <p>You are given a data file <code>data.dat</code> containing data for 50 settlements in Lithuania: geographical coordinates (latitude and longitude) and populations. You are also given a program template containing:</p>
+      <ul>
+         <li>global variables;</li>
+         <li>prototypes of the functions you need to implement;</li>
+         <li>an example of the <code>main</code> function.</li>
+      </ul>
+
+      <p>Implement the following functions:</p>
+      <ul>
+         <li><code>void readFile()</code>, which reads data from the file <code>data.dat</code>, stores the point coordinates in the two-dimensional array <code>coord</code> and the populations &minus; in the one-dimensional array <code>pop</code>;</li>
+         <li><code>printData()</code>, which prints all data: the coordinates and population of each point (one point per line);</li>
+         <li><code>void printData(int n)</code>, which prints the data for <code>n</code> points (one point per line);</li>
+         <li><code>double HaversineDistance(int i, int j)</code>, which calculates and returns the distance in kilometres between two geographical points whose indices in the <code>coord</code> array are given by the function parameters <code>i</code> and <code>j</code>;</li>
+         <li><code>double getClosestDistance(int i, int* F, int numF)</code>, which calculates and returns the distance from the geographical point with index <code>i</code> to the nearest facility in the set <code>F</code>, which contains <code>numF</code> facility indices;</li>
+         <li><code>double getUtilityOfX(int* X, int numX)</code>, which calculates and returns the total purchasing power received by all new facilities in the set <code>X</code>, which contains <code>numX</code> facility indices.</li>
+      </ul>
+
+      <p>Test cases:</p>
+
+      <ul>
+         <li><i>P</i> = {0, 1, 2, 3, 4}, <i>X</i> = {5, 6, 7}. Result: 15.7809.</li>
+         <li><i>P</i> = {0, 1, 2, 3, 4}, <i>X</i> = {8, 9, 10}. Result: 11.5232.</li>
+         <li><i>P</i> = {0, 1, 2, 3, 4}, <i>X</i> = {0, 1, 2}. Result: 25.1449.</li>
+      </ul>
+	</body>
+</html>

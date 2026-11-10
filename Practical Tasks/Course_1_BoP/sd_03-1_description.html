@@ -1,0 +1,38 @@
+<html>
+	<meta charset="utf-8"/>
+	<body>
+		<ol>
+			<li><p>Sudarykite funkciją, kuri rastų geriausias vietas nurodytam skaičiui (<code>n</code>) naujų objektų, laikydami, kad viename mieste gali būti tik vienas naujas objektas (bet gali būti vienas naujas ir vienas jau egzistuojantis objektas). Geriausiu sprendiniu turi būti laikomas tas, kuriam didžiausią rezultatą grąžina pirmame laboratoriniame darbe sudaryta tikslo funkcija. Funkcija turi veikti bet kokiam objektų skaičiui <code>n</code>.</p></li>
+			<p>Geriausio sprendinio ieškokite išbandant visus galimus sprendinius ir parenkant geriausią. Reikia patikrinti visas galimas kombinacijas, atsižvelgiant į tai, kad viename mieste gali būti tik vienas naujas objektas. Jei naujų objektų skaičius yra 3, o miestų skaičius yra 50, tai turite patikrinti 19600 skirtingų sprendinių:</p>
+<pre>
+0  1  2
+0  1  3
+.
+   .
+      .
+0  1  48
+0  1  49
+0  2  3
+0  2  4
+.
+   .  
+      .
+46 47 48
+46 47 49
+47 48 49
+</pre>
+
+			<li>Papildykite antrojo savarankiško darbo metu sudarytą programą pagal šiuos reikalavimus:</li>
+			<ul>
+				<li>Visas pagalbines funkcijas (išskyrus funkcijų šablonus) aprašykite atskirame faile <code>*.cpp</code>.</li>
+				<li>Sudarytam failui <code>*.cpp</code> sudarykite antraščių failą <i>*.h</i> ir apsaugokite jį nuo pakartotinio įkėlimo į tą pačią programą.</li>
+				<li>Sudarykite programos sudarymo failą (<i>makefile</i>), kuris sugeneruotų paleidžiamąjį jūsų programos failą. Programos sudarymo faile skirkite 3 atvejus:</li>
+				<ul>
+					<li>Programos paleidžiamojo failo sudarymas: kompiliuoja pagrindinį failą, ir kuria paleidžiamąjį failą kartu su sukompiliuotu papildomų funkcijų <code>*.o</code>.</li>
+					<li>Papildomų funkcijų failo kompiliavimas.</li>
+					<li>Išvalymas: trina visus <code>*.o</code> failus ir programos paleidžiamąjį failą.</li>
+				</ul>         
+			</ul>
+		</ol>
+	</body>
+</html>
