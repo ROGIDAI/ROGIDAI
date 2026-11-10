@@ -2,32 +2,32 @@
 
 using namespace std;
 
-//----- Globalus kintamieji ---------------------------------------------------
+//----- Global variables -------------------------------------------------------
 
-const int N = 50;           // Geografiniu tasku skaicius
-double coord[N][2];         // Geografiniu tasku koordinates
-int pop[N];                 // Geografiniu tasku perkamosios galios (populiacijos)
+const int N = 50;           // Number of geographic points
+double coord[N][2];         // Coordinates of geographic points
+int pop[N];                 // Buying power (population) of geographic points
 
-int numP = 5;               // Rinkoje egzistuojanciu objektu skaicius
-int P[] = {0,1,2,3,4};      // Rinkoje egzistuojanciu objektu indeksai masyvuose (coord) ir (pop)
+int numP = 5;               // Number of existing facilities in the market
+int P[] = {0,1,2,3,4};      // Indices of existing facilities in coord and pop arrays
 
-//----- Funkciju prototipai ---------------------------------------------------
+//----- Function declarations --------------------------------------------------
 
-void readFile();                                        // Nuskaitomi koordinaciu ir populiacijos duomenys is failo
-void printData();                                       // Atspausdinami visi koordinaciu ir populiacijos duomenys
-void printData(int n);                                  // Atspausdinamas nurodytas kiekis (n) koordinaciu ir populiacijos duomenu
-double HaversineDistance(int i, int j);                 // Atstumas (km) tarp dvieju geografiniu tasku, kuriu indeksai masyve yra (i) ir (j)
-double getClosestDistance(int i, int* F, int numF);     // Randamas atstumas nuo geografinio tasko (i) iki artimiausio objekto aibeje (F), kurioje yra (numF) objektu indeksai
-double getUtilityOfX(int* X, int numX);                 // Perkamoji galia tenkanti naujiems objektams aibėje (X), kurioje yra (numX) objektų indeksai
+void readFile();                                        // Read coordinates and population data from a file
+void printData();                                       // Print all coordinates and population data
+void printData(int n);                                  // Print the first n coordinate and population records
+double HaversineDistance(int i, int j);                 // Distance (km) between geographic points i and j
+double getClosestDistance(int i, int* F, int numF);     // Distance from point i to the nearest facility in F (numF facilities)
+double getUtilityOfX(int* X, int numX);                 // Buying power gained by new facilities in X (numX facilities)
 
-//----- Pagrinine funkcija ----------------------------------------------------
+//----- Main function ---------------------------------------------------------
 
 int main() {
-    int numX = 3;                                       // Nauju objektu skaicius
-    int X[] = {5,6,7};                                  // objektu indeksai
+    int numX = 3;                                       // Number of new facilities
+    int X[] = {5,6,7};                                  // Facility indices
 
-    readFile();                                         // Nuskaito duomenis is failo
-    printData(3);                                       // Atspausdina tris pirmuosius irasus
+    readFile();                                         // Read data from a file
+    printData(3);                                       // Print the first three records
     cout << HaversineDistance(0,1) << endl;             // Output: 93.9964
     cout << getClosestDistance(0, P, numP) << endl;     // Output: 0
     cout << getClosestDistance(0, X, numX) << endl;     // Output: 18.4549
