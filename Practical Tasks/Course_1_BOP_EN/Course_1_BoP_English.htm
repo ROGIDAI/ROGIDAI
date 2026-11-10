@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Course 1 - Practical Tasks (English)
+  </title>
+ </head>
+ <body>
+  <h2>
+   Facility Location Problem
+  </h2>
+  <p>
+   Suppose several companies providing services to residents operate in a given geographical area, with a total of
+   <i>
+    N
+    <sub>
+     PF
+    </sub>
+   </i>
+   facilities (
+   <i>
+    Preexisting Facilities
+   </i>
+   ). A new company wants to enter the market and plans to open
+   <i>
+    N
+    <sub>
+     X
+    </sub>
+   </i>
+   new facilities. The task is to select the cities in which the new facilities would attract the largest number of customers.
+  </p>
+  <p>
+   Customers choose facilities according to geographical distance: all residents of a city choose the nearest facility. The distance between two geographical points is calculated using the
+   <a href="https://en.wikipedia.org/wiki/Haversine_formula">
+    Haversine formula
+   </a>
+   , for which a C++ implementation is provided in the virtual learning environment.
+  </p>
+  <p>
+   When evaluating the utility of the new facilities, the following algorithm is applied to each city:
+  </p>
+  <ol>
+   <li>
+    Find the nearest facility among those already operating in the market.
+   </li>
+   <li>
+    Find the nearest facility among the planned new facilities.
+   </li>
+   <li>
+    If the distance to the nearest new facility is smaller than the distance to the nearest existing facility, add the city's entire purchasing power (all customers) to the utility of the new company.
+   </li>
+   <li>
+    If the distance to the nearest new facility equals the distance to the nearest existing facility, the new company receives one third of the city's purchasing power. For example, if a city has 1,000 residents, purchasing power equivalent to 333.333333 customers is added to the utility of the new company.
+   </li>
+  </ol>
+  <p>
+   The
+   <i>
+    N
+    <sub>
+     PF
+    </sub>
+   </i>
+   facilities already operating in the market are located in the largest cities, one facility per city. New facilities may be established in any city, including a city where a competitor already has a facility; however, only one new facility may be established in any given city.
+  </p>
+  <h2>
+   Laboratory Work No. 1 &mdash; Assignment
+  </h2>
+  <p>
+   A data file named
+   <code>
+    data.dat
+   </code>
+   is provided, containing data on 50 Lithuanian settlements: geographical coordinates (latitude and longitude) and populations. A program template is also provided, containing:
+  </p>
+  <ul>
+   <li>
+    Global variables.
+   </li>
+   <li>
+    Prototypes of the functions to be implemented.
+   </li>
+   <li>
+    An example of the main function,
+    <code>
+     main
+    </code>
+    .
+   </li>
+  </ul>
+  <p>
+   Implement the following functions:
+  </p>
+  <ul>
+   <li>
+    <code>
+     void readFile()
+    </code>
+    &mdash; reads data from
+    <code>
+     data.dat
+    </code>
+    , storing point coordinates in the two-dimensional array
+    <code>
+     coord
+    </code>
+    and populations in the one-dimensional array
+    <code>
+     pop
+    </code>
+    .
+   </li>
+   <li>
+    <code>
+     printData()
+    </code>
+    &mdash; prints all data: point coordinates and populations, with the data for one point on each line.
+   </li>
+   <li>
+    <code>
+     void printData(int n)
+    </code>
+    &mdash; prints data for
+    <code>
+     n
+    </code>
+    points, with the data for one point on each line.
+   </li>
+   <li>
+    <code>
+     double HaversineDistance(int i, int j)
+    </code>
+    &mdash; calculates and returns the distance in kilometres between two geographical points whose indices in the
+    <code>
+     coord
+    </code>
+    array are the function parameters
+    <code>
+     i
+    </code>
+    and
+    <code>
+     j
+    </code>
+    .
+   </li>
+   <li>
+    <code>
+     double getClosestDistance(int i, int* F, int numF)
+    </code>
+    &mdash; calculates and returns the distance from the geographical point with index
+    <code>
+     i
+    </code>
+    to the nearest facility in set
+    <code>
+     F
+    </code>
+    , which contains
+    <code>
+     numF
+    </code>
+    facility indices.
+   </li>
+   <li>
+    <code>
+     double getUtilityOfX(int* X, int numX)
+    </code>
+    &mdash; calculates and returns the purchasing power attributable to all new facilities in set
+    <code>
+     X
+    </code>
+    , which contains
+    <code>
+     numX
+    </code>
+    facility indices.
+   </li>
+  </ul>
+  <p>
+   Test cases:
+  </p>
+  <ul>
+   <li>
+    <i>
+     P
+    </i>
+    = {0, 1, 2, 3, 4},
+    <i>
+     X
+    </i>
+    = {5, 6, 7}. Result:
+    <strong>
+     15.7809
+    </strong>
+    .
+   </li>
+   <li>
+    <i>
+     P
+    </i>
+    = {0, 1, 2, 3, 4},
+    <i>
+     X
+    </i>
+    = {8, 9, 10}. Result:
+    <strong>
+     11.5232
+    </strong>
+    .
+   </li>
+   <li>
+    <i>
+     P
+    </i>
+    = {0, 1, 2, 3, 4},
+    <i>
+     X
+    </i>
+    = {0, 1, 2}. Result:
+    <strong>
+     25.1449
+    </strong>
+    .
+   </li>
+  </ul>
+  <hr/>
+  <h2>
+   Laboratory Work No. 2 &mdash; Assignment
+  </h2>
+  <p>
+   Extend Laboratory Work No. 1 by completing the following tasks:
+  </p>
+  <ol>
+   <li>
+    Create a structure for storing the data of one geographical point: longitude, latitude and population.
+   </li>
+   <li>
+    Read geographical data from a text file and create an array of structures in dynamically allocated memory.
+   </li>
+   <li>
+    Modify the Haversine distance calculation function so that it takes two parameters: pointers to structures describing geographical points.
+   </li>
+   <li>
+    <p>
+     Create a function that calculates a matrix of distances between all geographical coordinate points and returns its address. Since the distance from point
+     <code>
+      A
+     </code>
+     to point
+     <code>
+      B
+     </code>
+     equals the distance from
+     <code>
+      B
+     </code>
+     to
+     <code>
+      A
+     </code>
+     , a &ldquo;triangular&rdquo; matrix can be generated. The first 10 rows of such a matrix would look as follows:
+    </p>
+    <pre>0.0
+94.0    0.0
+290.2 198.2    0.0
+33.7   74.8  264.0    0.0
+131.9  96.9  202.5   98.1    0.0
+87.6   56.4  237.3   89.5  149.4    0.0
+18.5  100.5  298.5   50.7  148.5   82.9    0.0
+88.9   75.3  228.1   55.2   43.1  118.7  105.8    0.0
+79.7   31.8  212.0   52.1   72.4   77.4   91.4   44.1    0.0
+92.6  126.8  282.6   69.9   82.7  157.3  110.8   57.8   95.4    0.0</pre>
+    <p>
+     Here, the element in row
+     <code>
+      i
+     </code>
+     and column
+     <code>
+      j
+     </code>
+     is the distance between points
+     <code>
+      i
+     </code>
+     and
+     <code>
+      j
+     </code>
+     . The distance matrix must be allocated exactly as much memory as is needed to store all its elements (no more than necessary).
+    </p>
+    <p>
+     The function must work for any number
+     <code>
+      N
+     </code>
+     of points (the file
+     <code>
+      data.data
+     </code>
+     contains more than 12,000 points).
+    </p>
+   </li>
+   <li>
+    Create a function that prints the first
+    <code>
+     n
+    </code>
+    rows of the distance matrix as shown above. Here,
+    <code>
+     n
+    </code>
+    is a function parameter.
+   </li>
+   <li>
+    Create a function that returns the distance between two points from the generated distance matrix. Supply the point indices and the distance matrix as function parameters.
+   </li>
+  </ol>
+  <hr/>
+  <h2>
+   Laboratory Work #3 - Assignment
+  </h2>
+  <ol>
+   <li>
+    <p>
+     Create a function that finds the best locations for a specified number (
+     <code>
+      n
+     </code>
+     ) of new facilities, assuming that only one new facility may be placed in a city (but one new facility and one already existing facility may be located in the same city). The best solution is the one for which the objective function developed in the first laboratory work returns the highest value. The function must work for any number
+     <code>
+      n
+     </code>
+     of facilities.
+    </p>
+    <p>
+     Find the best solution by trying all possible solutions and selecting the best one. All possible combinations must be checked, taking into account that only one new facility may be placed in each city. If the number of new facilities is 3 and the number of cities is 50, you must check 19,600 different solutions:
+    </p>
+    <pre>0  1  2
+0  1  3
+.
+   .
+      .
+0  1  48
+0  1  49
+0  2  3
+0  2  4
+.
+   .
+      .
+46 47 48
+46 47 49
+47 48 49</pre>
+   </li>
+   <li>
+    <p>
+     Extend the program developed during the second independent assignment according to the following requirements:
+    </p>
+    <ul>
+     <li>
+      Place all auxiliary function implementations (excluding function prototypes) in a separate
+      <code>
+       *.cpp
+      </code>
+      file.
+     </li>
+     <li>
+      Create a header file
+      <code>
+       *.h
+      </code>
+      for that
+      <code>
+       *.cpp
+      </code>
+      file and protect it against repeated inclusion in the same program.
+     </li>
+     <li>
+      Create a program build file (
+      <i>
+       makefile
+      </i>
+      ) that generates the executable file for your program. Define three operations in the build file:
+      <ul>
+       <li>
+        <strong>
+         Build the executable:
+        </strong>
+        compile the main file and create the executable by linking it with the compiled auxiliary functions in a
+        <code>
+         *.o
+        </code>
+        file.
+       </li>
+       <li>
+        <strong>
+         Compile the auxiliary functions file.
+        </strong>
+       </li>
+       <li>
+        <strong>
+         Clean:
+        </strong>
+        delete all
+        <code>
+         *.o
+        </code>
+        files and the program's executable file.
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ol>
+ </body>
+</html>
