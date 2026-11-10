@@ -1,16 +1,16 @@
-# MAS4FLP - Multi-Agent System for Facility Location Problem
+# MAS4FLP - Multi-Agent System for Park & Ride Hubs
 
-This Python project selects solution of **k number of facilities from 283 candidate locations** for **440 demand regions**. Solutions are evaluated using **Binary**, **Proportional**, and optionally **Pareto-Huff** customer-behavior models. The project supports two objectives (2BM) or three objectives (3BM).
+This Python project selects solution of **k number of facilities from 283 candidate locations** for **440 demand regions**. Solutions are evaluated using **Binary**, **Proportional**, and optionally **Pareto-Huff** customer behavior models. The project supports two objectives (2BM) or three objectives (3BM).
 
 ## 1. Project structure
 
 ```text
 ROGIDAI/
-├── data/                     # Demand, distances, quality cases, learned probabilities
+├── data/                     # Demand, distances, quality files, learned probabilities
 ├── data_set_preparation/     # Scripts for generating additional quality cases
 ├── objectives/              # Binary, Proportional and Pareto-Huff utilities
 ├── complete_enumeration/    # Exact Pareto-front calculation
-├── agent_learning/          # Learn candidate-selection probabilities
+├── agent_learning/          # Agent Learning Logic
 ├── mas/                     # Multi-agent system
 ├── established_algorithms/
 │   ├── nsga2/               # NSGA-II baseline
@@ -27,14 +27,14 @@ ROGIDAI/
 - **NU01–NU04:** Nonuniform qualities from a Beta(2, 5) distribution scaled to [1, 5].
 - **SC01–SC04:** Spatially correlated qualities based on candidate-to-candidate road distances.
 
-To regenerate U, NU and SC cases, run the three `generate_*.py` scripts from inside `data_set_preparation/`. They write to `data_set_preparation/data/`; copy the generated case folders into the main `data/` directory before running the algorithms. The original TC1-TC6 - and shared demand/distance files are supplied separately.
+To regenerate U, NU and SC cases, run the three `generate_*.py` scripts from inside `data_set_preparation/`. They write to `data_set_preparation/data/`; copy the generated case folders into the main `data/` directory before running the algorithms.
 
 ## 3. Implemented algorithms
 
 | Algorithm | Purpose |
 |---|---|
 | **Complete Enumeration (CE)** | Evaluates every feasible k number of candidate locations solution and saves the exact Pareto front. |
-| **Agent Learning** | Independently learns candidate-selection probabilities for each behavior model. |
+| **Agent Learning** | Independently learns and update ranks for candidate locations and produce selection probabilities for each behavior model. |
 | **MAS4FLP** | Agents propose solutions using learned probabilities; a base agent checks duplicates, cross-evaluates proposals, and maintains a set of non-dominated solutions. |
 | **NSGA-II** | Evolutionary baseline using non-dominated sorting, crowding distance, crossover, and mutation. |
 | **MOEA/D** | Decomposition-based evolutionary baseline implemented with `pymoo`; currently supports 2BM. |
