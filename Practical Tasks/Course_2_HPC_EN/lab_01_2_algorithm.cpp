@@ -5,23 +5,23 @@
 
 using namespace std;
 
-//===== Globalus kintamieji ===================================================
+//===== Global variables =======================================================
 
-int num_points = 5000;      		// Tasku skaicius (max 50000). Didinant ilgeja matricos skaiciavimo ir sprendinio paieskos laikas
-int num_variables = 3;      		// Tasku, kuriuos reikia rasti, skaicius
-int num_possible_locations = 50;	// Galimu vietu naujiems objektams skaicius (pirmi taskai is masyvo)
+int num_points = 5000;      		// Number of points (max 50000). More points increase matrix calculation and solution search time
+int num_variables = 3;      		// Number of points to find
+int num_possible_locations = 50;	// Number of possible locations for new facilities (first points in the array)
 
-double **points;            		// Masyvas taskams saugoti
-double **distance_matrix;   		// Masyvas atstumu matricai saugoti
+double **points;            		// Array for storing points
+double **distance_matrix;   		// Array for storing the distance matrix
 
-//===== Funkciju antrastes ====================================================
+//===== Function declarations ==================================================
 
-double get_time();                                          // Funkcija laiko matavimui
-void load_data();                                           // Duomenu ikelimo is failo funkcija
-double Haversine_distance(double, double, double, double);  // Atstumo skaiciavimo pagal Haversino formule funkcija
-double distance_from_matrix(int, int);                      // Atstumo paemimo is atstumu matricos funkcija
-bool next_solution(int*); 									// Sekancio sprendinio generavimo funkcija
-double evaluate_solution(int*);                             // Funkcija sprendinio tikslo funkcijos reiksmei ivertinti
+double get_time();                                          // Function for measuring time
+void load_data();                                           // Function for loading data from a file
+double Haversine_distance(double, double, double, double);  // Function for calculating distance using the Haversine formula
+double distance_from_matrix(int, int);                      // Function for getting a distance from the distance matrix
+bool next_solution(int*); 									// Function for generating the next solution
+double evaluate_solution(int*);                             // Function for evaluating the objective function value of a solution
 
 //=============================================================================
 
@@ -29,15 +29,15 @@ int main() {
 	
     srand(time(NULL));
 
-	double t_0 = get_time();    // Programos vykdymo pradzios laiko fiksavimas
+	double t_0 = get_time();    // Record the program start time
 		
-    load_data();                // Duomenu ikelimas is failo
+    load_data();                // Load data from the file
 	
-	double t_1 = get_time();    // Duomenu ikelimo pabaigos laiko fiksavimas
+	double t_1 = get_time();    // Record the end of data loading
 	
     //-------------------------------------------------------------------------
-	// Skaiciuojam atstumu matrica
-    // Matrica yra "trikampe", nes atstumai nuo A iki B ir nuo B iki A yra lygus
+	// Calculate the distance matrix
+    // The matrix is triangular because the distance from A to B equals the distance from B to A
     //-------------------------------------------------------------------------
 
 	distance_matrix = new double*[num_points];
@@ -48,34 +48,34 @@ int main() {
 		}
 	}
 	
-	double t_2 = get_time();    // Matricos skaiciavimo pabaigos laiko fiksavimas
+	double t_2 = get_time();    // Record the end of distance matrix calculation
 	
     //-------------------------------------------------------------------------
-	// Geriausio sprendinio pasieska pilno perrinkimo algoritmu
-    // (angl. Complete Enumeration)
+	// Search for the best solution using complete enumeration
+    // (English: Complete Enumeration)
     //-------------------------------------------------------------------------
 	
-    int *solution = new int[num_variables];       // Masyvas atsitiktinai sugeneruotam sprendiniui saugoti
-    int *best_solution = new int[num_variables];  // Masyvas geriausiam rastam sprendiniui saugoti
-	double f_solution, f_best_solution = 1e10;     // Atsitiktinio ir geriausio rasto sprendiniu tikslo funkciju reiksmes
+    int *solution = new int[num_variables];       // Array for storing a randomly generated solution
+    int *best_solution = new int[num_variables];  // Array for storing the best solution found
+	double f_solution, f_best_solution = 1e10;     // Objective function values for the random and best solutions found
 
-	for (int i=0; i<num_variables; i++) solution[i] = i;	// Pradinis sprendinys [0, 1, 2]
+	for (int i=0; i<num_variables; i++) solution[i] = i;	// Initial solution [0, 1, 2]
 	//for (int i=0; i<num_variables; i++) cout << solution[i] << " "; cout << endl;
 
 	while (next_solution(solution) == true) {
-		f_solution = evaluate_solution(solution);   // Sprendinio tikslo funkcijos skaiciavimas
-		if (f_solution < f_best_solution) {         // Tikrinam ar sugeneruotas sprendinys yra geresnis (mazesnis) uz geriausia zinoma
-			f_best_solution = f_solution;            // Jei taip, atnaujinam informacija apie geriausia zinoma sprendini
+		f_solution = evaluate_solution(solution);   // Calculate the objective function value of the solution
+		if (f_solution < f_best_solution) {         // Check whether the generated solution is better (smaller) than the best known solution
+			f_best_solution = f_solution;            // If so, update the best known solution
 			for (int j=0; j<num_variables; j++) {
                 best_solution[j] = solution[j];
             }
 		}
 	}
 
-	double t_3 = get_time();    // Sprendinio paieskos pabaigos laiko fiksavimas
+	double t_3 = get_time();    // Record the end of solution search
 
     //-------------------------------------------------------------------------
-	// Rezultatų spausdinimas
+	// Print the results
     //-------------------------------------------------------------------------
 
 	cout << "Geriausias rastas sprendinys (tasku indeksai duomenu masyve): ";
@@ -87,7 +87,7 @@ int main() {
 }
 
 //=============================================================================
-// Papildomos funkcijos. SIU FUNKCIJU LYGIAGRETINTI NEREIKIA.
+// Helper functions. THESE FUNCTIONS DO NOT NEED TO BE PARALLELIZED.
 //=============================================================================
 
 double get_time() {
