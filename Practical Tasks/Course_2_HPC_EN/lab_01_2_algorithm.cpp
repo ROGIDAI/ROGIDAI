@@ -79,12 +79,12 @@ int main() {
     //-------------------------------------------------------------------------
 
 
-cout << "Best solution found (point indices in the data array): ";
-for (int i=0; i<num_variables; i++) cout << best_solution[i] << "\t";
-cout << endl;
-cout << "Data loading time: " << t_1 - t_0 << " s." << endl;
-cout << "Distance matrix calculation time: " << t_2 - t_1 << " s." << endl;
-cout << "Solution search time: " << t_3 - t_2 << " s." << endl;
+	cout << "Best solution found (point indices in the data array): ";
+	for (int i=0; i<num_variables; i++) cout << best_solution[i] << "\t";
+	cout << endl;
+	cout << "Data loading time: " << t_1 - t_0 << " s." << endl;
+	cout << "Distance matrix calculation time: " << t_2 - t_1 << " s." << endl;
+	cout << "Solution search time: " << t_3 - t_2 << " s." << endl;
 	
 }
 
